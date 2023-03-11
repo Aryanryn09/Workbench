@@ -91,9 +91,13 @@ Thank you for your help!
 
 ### The app won't build/run anymore - even on clean `main`
 
-Clean the build directory.
+Clean the build directory. On GNOME Builder, open the search palette with `Ctrl+Enter` and search/select `Clean`.
 
-On GNOME Builder, open the search palette with `Ctrl+Enter` and search/select `Clean`.
+If that doesn't solve it - remove the GNOME Builder cache directory
+
+```
+rm -r ~/.var/app/org.gnome.Builder/cache/
+```
 
 ### git says `blueprint-compiler` is modified
 

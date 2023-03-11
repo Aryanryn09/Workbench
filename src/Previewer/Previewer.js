@@ -12,7 +12,7 @@ import Internal from "./Internal.js";
 import External from "./External.js";
 import { getClassNameType } from "../overrides.js";
 
-import { isBuilderable, isPreviewable } from "./utils.js";
+import { assertBuildable, isBuilderable, isPreviewable } from "./utils.js";
 
 /*
   Always default to in-process preview
@@ -170,8 +170,15 @@ export default function Previewer({
 
     if (!target_id) return;
 
+    try {
+      assertBuildable(tree);
+    } catch (err) {
+      console.warn(err.message);
+      return;
+    }
+
     // console.time("builderable");
-    if (!(await isBuilderable(text))) return;
+    if (!(await isBuilderable(text, target_id))) return;
     // console.timeEnd("builderable");
 
     const builder = new Gtk.Builder();
